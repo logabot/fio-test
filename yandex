@@ -1,0 +1,64 @@
+CPU:8
+RAM:8
+SSD - 50Gb
+
+[root@test1 dpetrukhin]# fio --randrepeat=1 --direct=1 --gtod_reduce=1 --name=rw --filename=test --bs=8k --iodepth=64 --size=10G --readwrite=randrw
+rw: (g=0): rw=randrw, bs=(R) 8192B-8192B, (W) 8192B-8192B, (T) 8192B-8192B, ioengine=psync, iodepth=64
+fio-3.7
+Starting 1 process
+rw: Laying out IO file (1 file / 10240MiB)
+Jobs: 1 (f=1): [m(1)][3.1%][r=1808KiB/s,w=1720KiB/s][r=226,w=215 IOPS][eta 29m:56s]29m:00s]
+^Cbs: 1 (f=1): [m(1)][50.9%][r=2424KiB/s,w=2784KiB/s][r=303,w=348 IOPS][eta 15m:32s]
+fio: terminating on signal 2
+
+rw: (groupid=0, jobs=1): err= 0: pid=26847: Fri Feb  7 11:54:57 2020
+   read: IOPS=345, BW=2763KiB/s (2830kB/s)(2610MiB/967285msec)
+   bw (  KiB/s): min=  592, max= 4224, per=100.00%, avg=2762.90, stdev=470.23, samples=1934
+   iops        : min=   74, max=  528, avg=345.34, stdev=58.79, samples=1934
+  write: IOPS=344, BW=2760KiB/s (2826kB/s)(2607MiB/967285msec)
+   bw (  KiB/s): min=  544, max= 4256, per=100.00%, avg=2759.52, stdev=452.12, samples=1934
+   iops        : min=   68, max=  532, avg=344.92, stdev=56.53, samples=1934
+  cpu          : usr=0.30%, sys=1.18%, ctx=667818, majf=0, minf=27
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=334104,333708,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=64
+
+Run status group 0 (all jobs):
+   READ: bw=2763KiB/s (2830kB/s), 2763KiB/s-2763KiB/s (2830kB/s-2830kB/s), io=2610MiB (2737MB), run=967285-967285msec
+  WRITE: bw=2760KiB/s (2826kB/s), 2760KiB/s-2760KiB/s (2826kB/s-2826kB/s), io=2607MiB (2734MB), run=967285-967285msec
+
+Disk stats (read/write):
+  vda: ios=334411/334211, merge=0/30, ticks=442513/519378, in_queue=956953, util=98.20%
+[root@test1 dpetrukhin]# fio --randrepeat=1 --direct=1 --gtod_reduce=1 --name=rw --filename=test --bs=8k --iodepth=64 --size=5G --readwrite=randrw
+rw: (g=0): rw=randrw, bs=(R) 8192B-8192B, (W) 8192B-8192B, (T) 8192B-8192B, ioengine=psync, iodepth=64
+fio-3.7
+Starting 1 process
+Jobs: 1 (f=1): [m(1)][99.9%][r=2858KiB/s,w=3075KiB/s][r=357,w=384 IOPS][eta 00m:01s]
+rw: (groupid=0, jobs=1): err= 0: pid=27007: Fri Feb  7 12:11:03 2020
+   read: IOPS=340, BW=2725KiB/s (2790kB/s)(2562MiB/962660msec)
+   bw (  KiB/s): min=  496, max= 3984, per=100.00%, avg=2724.31, stdev=477.55, samples=1925
+   iops        : min=   62, max=  498, avg=340.53, stdev=59.70, samples=1925
+  write: IOPS=340, BW=2722KiB/s (2787kB/s)(2558MiB/962660msec)
+   bw (  KiB/s): min=  560, max= 3792, per=100.00%, avg=2721.14, stdev=467.28, samples=1925
+   iops        : min=   70, max=  474, avg=340.13, stdev=58.41, samples=1925
+  cpu          : usr=0.27%, sys=1.21%, ctx=655363, majf=0, minf=27
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=327875,327485,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=64
+
+Run status group 0 (all jobs):
+   READ: bw=2725KiB/s (2790kB/s), 2725KiB/s-2725KiB/s (2790kB/s-2790kB/s), io=2562MiB (2686MB), run=962660-962660msec
+  WRITE: bw=2722KiB/s (2787kB/s), 2722KiB/s-2722KiB/s (2787kB/s-2787kB/s), io=2558MiB (2683MB), run=962660-962660msec
+
+Disk stats (read/write):
+  vda: ios=327818/327512, merge=0/12, ticks=436611/513579, in_queue=945170, util=98.21%
+
+
+CPU:8
+RAM:8
+SSD:100
+

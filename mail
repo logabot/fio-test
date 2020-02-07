@@ -1,0 +1,33 @@
+CPU:4
+RAM:8
+SSD: 50
+[root@centos-standard-4-8-50gb centos]# fio --randrepeat=1 --direct=1 --gtod_reduce=1 --name=rw --filename=test --bs=8k --iodepth=64 --size=5G --readwrite=randrw
+rw: (g=0): rw=randrw, bs=(R) 8192B-8192B, (W) 8192B-8192B, (T) 8192B-8192B, ioengine=psync, iodepth=64
+fio-3.7
+Starting 1 process
+Jobs: 1 (f=1): [m(1)][99.9%][r=2706KiB/s,w=2746KiB/s][r=338,w=343 IOPS][eta 00m:01s]
+rw: (groupid=0, jobs=1): err= 0: pid=9075: Fri Feb  7 12:19:58 2020
+   read: IOPS=217, BW=1743KiB/s (1785kB/s)(2562MiB/1504597msec)
+   bw (  KiB/s): min=   16, max= 3024, per=100.00%, avg=1791.09, stdev=541.74, samples=2928
+   iops        : min=    2, max=  378, avg=223.84, stdev=67.73, samples=2928
+  write: IOPS=217, BW=1741KiB/s (1783kB/s)(2558MiB/1504597msec)
+   bw (  KiB/s): min=   16, max= 2816, per=100.00%, avg=1785.35, stdev=521.43, samples=2934
+   iops        : min=    2, max=  352, avg=223.13, stdev=65.19, samples=2934
+  cpu          : usr=0.39%, sys=1.74%, ctx=655523, majf=0, minf=27
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=327875,327485,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=64
+
+Run status group 0 (all jobs):
+   READ: bw=1743KiB/s (1785kB/s), 1743KiB/s-1743KiB/s (1785kB/s-1785kB/s), io=2562MiB (2686MB), run=1504597-1504597msec
+  WRITE: bw=1741KiB/s (1783kB/s), 1741KiB/s-1741KiB/s (1783kB/s-1783kB/s), io=2558MiB (2683MB), run=1504597-1504597msec
+
+Disk stats (read/write):
+  vda: ios=331130/328697, merge=0/1781, ticks=403528/1085416, in_queue=1341218, util=88.67%
+
+
+CPU:4
+RAM:8
+SSD: 50
